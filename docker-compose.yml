@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:11
+    env_file: .env.development
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${DOCKER_POSTGRES_PORT:-54432}:5432"
+
+  flask-oauth2:
+    image: flask-oauth2
+    env_file: .env.development
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app
+
+volumes:
+  pgdata:
