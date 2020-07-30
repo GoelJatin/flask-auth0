@@ -12,9 +12,9 @@ EXPOSE 8000
 
 WORKDIR /app
 
-# COPY src/Pipfile src/Pipfile.lock ./
+COPY src/Pipfile src/Pipfile.lock ./
 
-# RUN pipenv install
+RUN pipenv install
 
 COPY src ./
 
