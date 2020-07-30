@@ -51,6 +51,11 @@ def callback_handling():
     return redirect('/dashboard')
 
 
+@app.route('/')
+def index():
+    return render_template('home.html')
+
+
 @app.route('/login')
 def login():
     return auth0.authorize_redirect(
@@ -89,8 +94,9 @@ def logout():
     # Redirect user to logout endpoint
     params = {
         'returnTo': url_for(
-            'home',
-            _external=True),
+            'index',
+            _external=True
+        ),
         'client_id': os.getenv('AUTH0_CLIENT_ID')}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
 
