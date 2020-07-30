@@ -1,1 +1,1 @@
-tail -f /dev/null
+pipenv run python server.py
